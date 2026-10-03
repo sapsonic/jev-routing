@@ -1,0 +1,15 @@
+name: jev-skill-router
+version: "0.3.0"
+description: >
+  Deterministically routes skill selection through the Jev (TypeSafe) model:
+  unconditionally on the first turn of every session, and on later turns
+  when a cheap classifier gate decides the currently active skill no longer
+  fits the new request. Routing state is in-memory only (never written to
+  disk) and no conversation history is sent to Jev or to the gate -- only
+  the current user message. A specialized route is only injected as a
+  directive when confidence, probability margin, and the router's own
+  needs_clarification signal all clear a floor; otherwise routing is
+  withheld and the model is told to ask a clarifying question instead of
+  guessing.
+requires_env:
+  - TYPESAFE_API_KEY
